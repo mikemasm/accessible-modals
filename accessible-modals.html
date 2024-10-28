@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible modals</title>
+    <link rel="stylesheet" href="accessible-modals.css">
+    <script src="accessible-modals.js"></script>
+</head>
+<body>
+    <h1>Accessible modals</h1>
+
+     <!-- Start content -->
+ 
+
+<p>Example modal in three sizes:</p>
+<a href="#" role="button" class="modal-trigger" data-reveal-id="largemodal">Large</a> &nbsp;&nbsp;
+<a href="#" role="button" class="modal-trigger" data-reveal-id="mediummodal">Medium</a>  &nbsp;&nbsp;
+<a href="#" role="button" class="modal-trigger" data-reveal-id="smallmodal">Small</a> 
+
+
+<p>Example modal with no header:</p> 
+<a href="#" role="button" class="modal-trigger" data-reveal-id="modalnoheader">Modal no header</a> 
+
+<p>Example modal with no header 2:</p>
+<a href="#" role="button" class="modal-trigger" data-reveal-id="modalnoheader2">Modal no header 2</a> 
+
+<p>Example modal with header focus:</p>
+<a href="#" role="button" class="modal-trigger" data-reveal-id="modalheaderfocus">Modal with header focus</a> 
+
+
+
+
+<p>Example of video</p>
+
+<a href="#" data-reveal-id="masm_video_example_1" class="modal-trigger video-trigger">test video 1</a><br/>
+<a href="#" data-reveal-id="masm_video_example_2" class="modal-trigger video-trigger">test video 2</a>
+
+
+
+
+
+<!-- Start modals -->
+<div class="modal-cover"></div> 
+
+<div id="largemodal" class="modal-dialog modal-large" role="dialog" aria-modal="true" aria-labelledby="title1">
+<div class="modal-dialog-wrap">
+   <div class="modal-dialog-content">
+      <h2 id="title1" tabindex="-1" class="dialog-label">Title of the large modal</h2>
+      <p>Large modal description</p>
+      <a href="#" title="example link for large modal">example link for large modal</a>
+   </div>
+   <button class="modal-close" aria-label="Close modal">&times;</button>
+</div>
+</div>
+
+<div id="mediummodal" class="modal-dialog modal-medium" role="dialog" aria-modal="true" aria-labelledby="title2">
+<div class="modal-dialog-wrap">
+   <div class="modal-dialog-content">
+      <h2 id="title2" tabindex="-1" class="dialog-label">Title of the medium modal</h2>
+      <p>Medium modal description</p>
+      <a href="#" title="example link for medium modal">example link for medium modal</a>
+   </div>
+   <button class="modal-close" aria-label="Close modal">&times;</button>
+</div>
+</div>
+
+<div id="smallmodal" class="modal-dialog modal-small" role="dialog" aria-modal="true" aria-labelledby="title3">
+<div class="modal-dialog-wrap">
+   <div class="modal-dialog-content">
+      <h2 id="title3" tabindex="-1" class="dialog-label">Title of the small modal</h2>
+      <p>Small modal description</p>
+      <a href="#" title="example link for medium modal">example link for small modal</a>
+   </div>
+   <button class="modal-close" aria-label="Close modal">&times;</button>
+</div>
+</div>
+
+
+<div id="modalnoheader" class="modal-dialog modal-large" role="dialog" aria-modal="true" aria-label="Modal example with no header title">
+<div class="modal-dialog-wrap">
+   <div class="modal-dialog-content">
+      <a href="#" title="link 1">link 1</a><br/>
+      <a href="#" title="link 2">link 2</a>
+   </div>
+   <button class="modal-close" aria-label="Close modal">&times;</button> 
+</div>
+</div>
+
+<div id="modalnoheader2" class="modal-dialog modal-large" role="dialog" aria-modal="true" aria-label="Modal example with no header title">
+<div class="modal-dialog-wrap">
+   <div class="modal-dialog-content">
+      <p tabindex="-1">regular test</p>
+   </div>
+   <button class="modal-close" aria-label="Close modal">&times;</button> 
+</div>
+</div>
+
+
+<div id="modalheaderfocus" class="modal-dialog modal-large" role="dialog" aria-modal="true" aria-labelledby="title4">
+<div class="modal-dialog-wrap">
+   <div class="modal-dialog-content">
+      <h2 id="title4" tabindex="-1" class="dialog-label">Title of modal with header focus</h2>
+      <p>Description for modal with header focus</p>
+   </div>
+   <button class="modal-close" aria-label="Close modal">&times;</button>
+</div>
+</div>
+
+
+
+
+<!-- Start video modals-->
+<div id="masm_video_example_1" class="modal-dialog modal-large" role="dialog" aria-modal="true" aria-labelledby="canada150story3"> 
+<div class="modal-dialog-wrap"> 
+ <div class="modal-dialog-content">  
+     <h2 class="sr-only" tabindex="-1">masm.ca video intro</h2>
+    <iframe src="" data-src="https://www.youtube.com/embed/XK8-5sf98xI?rel=0&amp;autoplay=1" width="100%" height="531" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+ </div> 
+ <button class="modal-close" aria-label="Close modal">&times;</button> 
+</div> 
+</div>
+
+<div id="masm_video_example_2" class="modal-dialog modal-large" role="dialog" aria-modal="true" aria-labelledby="canada150story2"> 
+<div class="modal-dialog-wrap"> 
+   <div class="modal-dialog-content">  
+       <h2 class="sr-only" tabindex="-1">masm.ca alternate video intro</h2>
+     <iframe src="" data-src="https://www.youtube.com/embed/eS91NrO8fqA?rel=0&amp;autoplay=1" width="100%" height="531" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+   </div> 
+   <button class="modal-close" aria-label="Close modal">&times;</button> 
+</div> 
+</div>
+
+<script>
+// <![CDATA[
+// load video from data-src attribute on trigger
+let videotriggers = document.querySelectorAll('.modal-trigger.video-trigger');
+videotriggers.forEach(function(videotrigger, index) {
+   let videoidattribute = videotrigger.getAttribute('data-reveal-id');
+   let videoelement = document.querySelector('#'+videoidattribute);
+   let videoiframeupdate = videoelement.querySelector('iframe');
+   let videoiframedatasrc = videoiframeupdate.getAttribute('data-src');
+   videoiframeupdate.setAttribute('allow', 'autoplay; fullscreen'); 
+   videoiframeupdate.setAttribute('allowtransparency', 'true'); 
+   videotrigger.addEventListener('click', function(e) {
+       videoiframeupdate.setAttribute('src', videoiframedatasrc);
+       
+   });
+});
+
+// ]]></script>
+
+
+<!-- End content -->
+
+
+</body>
+</html>
